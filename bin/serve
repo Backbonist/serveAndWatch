@@ -8,10 +8,10 @@ var resolve = require('path').resolve
   , join = require('path').join
   , program = require('commander')
   , connect = require('connect')
-  , stylus = require('stylus')
-  , jade = require('jade')
   , url = require('url')
-  , fs = require('fs');
+  , fs = require('fs')
+  , _ = require('underscore')
+  , Reload = require('../lib/reload');
 
 // CLI
 
@@ -20,9 +20,8 @@ program
   .usage('[options] [dir]')
   .option('-F, --format <fmt>', 'specify the log format string', 'dev')
   .option('-p, --port <port>', 'specify the port [3000]', Number, 3000)
+  .option('-w, --watch', 'watch dir and reload clients on change')
   .option('-H, --hidden', 'enable hidden file serving')
-  .option('-S, --no-stylus', 'disable stylus rendering')
-  .option('-J, --no-jade', 'disable jade rendering')
   .option('-I, --no-icons', 'disable icons')
   .option('-L, --no-logs', 'disable request logging')
   .option('-D, --no-dirs', 'disable directory serving')
@@ -40,42 +39,18 @@ server.use(connect.favicon());
 // logger
 if (program.logs) server.use(connect.logger(program.format));
 
-// convert .styl to .css to trick stylus.middleware
-if (program.stylus) {
-  server.use(function(req, res, next){
-    req.url = req.url.replace(/\.styl$/, '.css');
-    next();
-  });
+// watching a directory for changes
+if (program.watch) {
+  if(!fs.statSync(path)) return console.error(err.message);
+  Reload.addMiddleware(server, path);
+  var deboucedEmit = _.debounce(Reload.emit, 100);
+  fs.watch(path, deboucedEmit);
 }
-
-// jade
-if (program.jade) {
-  server.use(function(req, res, next){
-    if (!req.url.match(/\.jade$/)) return next();
-    var file = join(path, url.parse(req.url).pathname);
-    fs.readFile(file, 'utf8', function(err, str){
-      if (err) return next(err);
-      try {
-        var fn = jade.compile(str, { filename: file });
-        str = fn();
-        res.setHeader('Content-Type', 'text/plain');
-        res.setHeader('Content-Length', str.length);
-        res.end(str);
-      } catch (err) {
-        next(err);
-      }
-    });
-  });
-}
-
-// stylus
-server.use(stylus.middleware({ src: path }));
 
 // static files
 server.use(connect.static(path, { hidden: program.hidden }));
 
 // directory serving
-
 if (program.dirs) {
     server.use(connect.directory(path, {
       hidden: program.hidden

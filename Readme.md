@@ -1,7 +1,13 @@
+# serveAndWatch
 
-# serve
+Not yet stable.
 
-  Simple 5 minute command-line file / directory server built with connect, inspired by nodejitsu's [http-server](https://github.com/nodejitsu/http-server) to show off the simplicity and flexibility of connect as a modular server.
+An very simple http server [serve](https://github.com/visionmedia/serve) that force
+client to reload when files changes.
+
+Use the `--watch` or `-w` option to active this feature.
+
+The watch mode has been borrowed from [https://github.com/mklabs/mockerie](mockerie) by the genious [mklabs](https://github.com/mklabs).
 
 ## Installation
 
@@ -18,6 +24,7 @@ Options:
   -v, --version       output the version number
   -F, --format <fmt>  specify the log format string
   -p, --port <port>   specify the port [3000]
+  -w, --watch         watch dir and reload clients on change
   -H, --hidden        enable hidden file serving
   -S, --no-stylus     disable stylus rendering
   -J, --no-jade       disable jade rendering
