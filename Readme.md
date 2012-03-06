@@ -2,16 +2,18 @@
 
 Not yet stable.
 
-An very simple http server [serve](https://github.com/visionmedia/serve) that force
-client to reload when files changes.
+A very simple http server (forked from [serve](https://github.com/visionmedia/serve)) that force
+browsers to reload when the server detects file changes.
 
-Use the `--watch` or `-w` option to active this feature.
+Use the `--watch` or `-w` option to activate this feature.
 
 The watch mode has been borrowed from [https://github.com/mklabs/mockerie](mockerie) by the genious [mklabs](https://github.com/mklabs).
 
 ## Installation
 
-    $ npm install -g serve
+    $ git clone https://Filirom1@github.com/Backbonist/serveAndWatch.git
+    $ cd serveAndWatch
+    $ npm intall -g
 
 ## Usage
 
