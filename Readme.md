@@ -1,7 +1,5 @@
 # serveAndWatch
 
-Not yet stable.
-
 A very simple http server (forked from [serve](https://github.com/visionmedia/serve)) that force
 browsers to reload when the server detects file changes.
 
