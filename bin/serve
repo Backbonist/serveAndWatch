@@ -11,7 +11,7 @@ var resolve = require('path').resolve
   , url = require('url')
   , fs = require('fs')
   , _ = require('underscore')
-  , Reload = require('../lib/reload');
+  , reloadOnChange = require('../lib/reloadOnChange');
 
 // CLI
 
@@ -40,12 +40,7 @@ server.use(connect.favicon());
 if (program.logs) server.use(connect.logger(program.format));
 
 // watching a directory for changes
-if (program.watch) {
-  if(!fs.statSync(path)) return console.error(err.message);
-  Reload.addMiddleware(server, path);
-  var deboucedEmit = _.debounce(Reload.emit, 100);
-  fs.watch(path, deboucedEmit);
-}
+if (program.watch) server.use(reloadOnChange(path, server));
 
 // static files
 server.use(connect.static(path, { hidden: program.hidden }));
