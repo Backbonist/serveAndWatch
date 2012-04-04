@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "serveAndWatch",
   "version": "1.0.3",
   "description": "Simple command-line file / directory server built with connect",
@@ -24,17 +23,4 @@
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   }
-=======
-    "name": "serve"
-  , "version": "1.0.3"
-  , "description": "Simple command-line file / directory server built with connect"
-  , "keywords": ["static", "server", "connect"]
-  , "author": "TJ Holowaychuk <tj@vision-media.ca>"
-  , "dependencies": {
-      "connect": "1.8.x"
-    , "commander": "0.4.1"
-  }
-  , "bin": { "servePushState": "./bin/serve" }
-  , "engines": { "node": ">= 0.4.x < 0.7.0" }
->>>>>>> 33e7832dad33575b8ef5f753d542e9601b5a0c82
 }

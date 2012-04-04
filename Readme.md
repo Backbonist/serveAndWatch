@@ -26,6 +26,7 @@ Options:
   -p, --port <port>   specify the port [3000]
   -w, --watch         watch dir and reload clients on change
   -H, --hidden        enable hidden file serving
+  -P, --pushState     enable pushState on `index.html`
   -S, --no-stylus     disable stylus rendering
   -J, --no-jade       disable jade rendering
   -I, --no-icons      disable icons

@@ -22,7 +22,7 @@ program
   .option('-p, --port <port>', 'specify the port [3000]', Number, 3000)
   .option('-w, --watch', 'watch dir and reload clients on change')
   .option('-H, --hidden', 'enable hidden file serving')
-  .option('-P, --pushState', 'enable pushState')
+  .option('-P, --pushState', 'enable pushState on `index.html`')
   .option('-I, --no-icons', 'disable icons')
   .option('-L, --no-logs', 'disable request logging')
   .option('-D, --no-dirs', 'disable directory serving')
