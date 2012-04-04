@@ -22,6 +22,7 @@ program
   .option('-p, --port <port>', 'specify the port [3000]', Number, 3000)
   .option('-w, --watch', 'watch dir and reload clients on change')
   .option('-H, --hidden', 'enable hidden file serving')
+  .option('-P, --pushState', 'enable pushState')
   .option('-I, --no-icons', 'disable icons')
   .option('-L, --no-logs', 'disable request logging')
   .option('-D, --no-dirs', 'disable directory serving')
@@ -51,6 +52,12 @@ if (program.dirs) {
       hidden: program.hidden
     , icons: program.icons
   }));
+}
+
+if (program.pushState) {
+  server.use(function(req, res) {
+    fs.createReadStream( path + '/index.html').pipe(res);
+  });
 }
 
 // start the server
