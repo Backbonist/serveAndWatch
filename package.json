@@ -6,10 +6,8 @@
   , "author": "TJ Holowaychuk <tj@vision-media.ca>"
   , "dependencies": {
       "connect": "1.8.x"
-    , "stylus": "*"
-    , "jade": "*"
     , "commander": "0.4.1"
   }
-  , "bin": { "serve": "./bin/serve" }
+  , "bin": { "servePushState": "./bin/serve" }
   , "engines": { "node": ">= 0.4.x < 0.7.0" }
 }
