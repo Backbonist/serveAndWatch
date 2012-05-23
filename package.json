@@ -16,7 +16,8 @@
     "colors": "~0.6.0-1",
     "watchr": "~1.0.0",
     "coffee-script": "~1.2.0",
-    "mustache": "~0.4.0"
+    "mustache": "~0.4.0",
+    "connect-less": "~0.3.0"
   },
   "bin": {
     "serve": "./bin/serve"

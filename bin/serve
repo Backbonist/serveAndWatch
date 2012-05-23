@@ -21,6 +21,7 @@ program
   .option('-F, --format <fmt>', 'specify the log format string', 'dev')
   .option('-p, --port <port>', 'specify the port [3000]', Number, 3000)
   .option('-w, --watch', 'watch dir and reload clients on change')
+  .option('-l, --less', 'compile your .less files on the fly as needed')
   .option('-H, --hidden', 'enable hidden file serving')
   .option('-P, --pushState', 'enable pushState on `index.html`')
   .option('-I, --no-icons', 'disable icons')
@@ -42,6 +43,9 @@ if (program.logs) server.use(connect.logger(program.format));
 
 // watching a directory for changes
 if (program.watch) server.use(reloadOnChange(path, server));
+
+// less
+if (program.less) server.use(require('connect-less')({ src: path }));
 
 // static files
 server.use(connect.static(path, { hidden: program.hidden }));
