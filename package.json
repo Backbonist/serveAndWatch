@@ -1,6 +1,6 @@
 {
-  "name": "serveAndWatch",
-  "version": "1.0.3",
+  "name": "serve-filirom1",
+  "version": "1.0.4",
   "description": "Simple command-line file / directory server built with connect",
   "keywords": [
     "static",
