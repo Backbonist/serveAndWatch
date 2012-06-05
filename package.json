@@ -16,7 +16,8 @@
     "colors": "~0.6.0-1",
     "watch": "~0.5.1",
     "mustache": "~0.4.0",
-    "connect-less": "~0.3.0"
+    "connect-less": "~0.3.0",
+    "watch-connect": "~0.1.0"
   },
   "bin": {
     "serve": "./bin/serve"

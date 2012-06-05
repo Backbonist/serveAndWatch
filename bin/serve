@@ -10,8 +10,7 @@ var resolve = require('path').resolve
   , connect = require('connect')
   , url = require('url')
   , fs = require('fs')
-  , _ = require('underscore')
-  , reloadOnChange = require('../lib/reloadOnChange');
+  , _ = require('underscore');
 
 // CLI
 
@@ -42,7 +41,7 @@ server.use(connect.favicon());
 if (program.logs) server.use(connect.logger(program.format));
 
 // watching a directory for changes
-if (program.watch) server.use(reloadOnChange(path, server));
+if (program.watch) server.use(require('watch-connect')(path, server, {verbose: true}));
 
 // less
 if (program.less) server.use(require('connect-less')({ src: path }));
